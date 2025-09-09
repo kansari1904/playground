@@ -6,9 +6,13 @@ Designed to be simple to run locally, easy to deploy, and friendly for demos / i
 Quick summary
 
 Backend: Node.js + Express + Mongoose
+
 Frontend: React + Tailwind CSS (minimal)
+
 DB: MongoDB
+
 Features: CRUD profile, project queries, top skills, search, health endpoint
+
 Goal: Seed with your real profile data and push the repo to GitHub + optionally host the frontend + backend.
 
 Demo / Hosted URLs
