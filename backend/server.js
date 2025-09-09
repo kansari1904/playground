@@ -3,36 +3,52 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 const profileRoutes = require("./routes/profileRoutes");
-const authRouter = require("./routes/authRoute.js")
-const connectDB = require("./config/database.js");
+const authRoutes = require("./routes/authRoute");
+const connectDB = require("./config/database");
 
 dotenv.config();
-const app = express();
 
+const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Connect to database
 connectDB();
 
-
+const allowedOrigins = [
+    "http://localhost:5173",
+];
 
 // Middleware
-const allowedOrigins = ['http://localhost:5173']
-
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: allowedOrigins,
-    credentials: true
-}));
+app.use(
+    cors({
+        origin: function (origin, callback) {
+            if (process.env.NODE_ENV === "production") {
+                return callback(null, true);
+            } else {
+                if (!origin || allowedOrigins.includes(origin)) {
+                    return callback(null, true);
+                } else {
+                    return callback(new Error("Not allowed by CORS"));
+                }
+            }
+        },
+        credentials: true,
+    })
+);
 app.use(helmet());
-app.use(morgan("dev"));
+app.use(morgan("combined"));
 
 // Routes
-app.use("/api/auth", authRouter);
+app.use("/api/auth", authRoutes);
 app.use("/api", profileRoutes);
 
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "ok" });
+});
 
 // Error Handler
 app.use((err, req, res, next) => {
@@ -43,7 +59,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-
-app.listen(PORT, ()=>{
-    console.log(`Server is started at PORT ${PORT}`)
-})
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+});
