@@ -18,28 +18,22 @@ connectDB();
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://playground-eosin-xi.vercel.app/"
+    "https://playground-eosin-xi.vercel.app"
 ];
 
-// Middleware
-app.use(express.json());
-app.use(cookieParser());
 app.use(
     cors({
-        origin: function (origin, callback) {
-            if (process.env.NODE_ENV === "production") {
+        origin: (origin, callback) => {
+            if (!origin) return callback(null, true); // allow tools like Postman
+            if (allowedOrigins.includes(origin)) {
                 return callback(null, true);
-            } else {
-                if (!origin || allowedOrigins.includes(origin)) {
-                    return callback(null, true);
-                } else {
-                    return callback(new Error("Not allowed by CORS"));
-                }
             }
+            return callback(new Error("Not allowed by CORS"));
         },
         credentials: true,
     })
 );
+
 app.use(helmet());
 app.use(morgan("combined"));
 
