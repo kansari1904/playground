@@ -18,6 +18,7 @@ connectDB();
 
 const allowedOrigins = [
     "http://localhost:5173",
+    "https://playground-eosin-xi.vercel.app/"
 ];
 
 // Middleware
