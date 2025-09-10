@@ -65,18 +65,25 @@ Query endpoints return expected filtered results
 
 │       ├── api
 │       │   ├── axios.js
+
 │       │   └── profile.js
 
 │       ├── components
 │       │   ├── HealthBadge.jsx
+
 │       │   ├── Navbar.jsx
+
 │       │   └── SearchBar.jsx
 
 │       ├── pages
 │       │   ├── ProfileForm.jsx
+
 │       │   ├── ProfilePage.jsx
+
 │       │   ├── ProjectsPage.jsx
+
 │       │   ├── SkillsPage.jsx
+
 │       │   └── WorkPage.jsx
 
 │       └── App.jsx
@@ -102,12 +109,13 @@ dotenv for env vars
 Base: /api
 
 Profile
+
 POST /api/profile — Create or update profile (body: profile object)
 
 GET /api/profile — Get the single stored profile
 
 
-# Projects & Skills
+## Projects & Skills
 
 GET /api/projects — list all projects
 
@@ -116,6 +124,7 @@ GET /api/projects?skill=python — projects containing python skill
 GET /api/skills/top — list top skills ordered by frequency
 
 Search
+
 GET /api/search?q=frontend — full text search (profile + projects)
 
 Health
@@ -177,13 +186,16 @@ cd frontend
 npm install
 
 Configure api/axios.js baseURL:
+
 const api = axios.create({
+
   baseURL: process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api"
+  
 });
 
 npm run dev
 
-Resume: https://drive.google.com/file/d/12YbIqNcsPGtvfGkl15mpUWQtLYuVye3I/view?usp=drive_link
+## Resume: https://drive.google.com/file/d/12YbIqNcsPGtvfGkl15mpUWQtLYuVye3I/view?usp=drive_link
 
 
 
