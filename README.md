@@ -1,9 +1,9 @@
-Candidate Profile Playground
+# Candidate Profile Playground
 
 A tiny playground to store a personal candidate profile, expose a small API, and provide a minimal frontend to query and view the data.
 Designed to be simple to run locally, easy to deploy, and friendly for demos / interviews.
 
-Quick summary
+## Quick summary
 
 Backend: Node.js + Express + Mongoose
 
@@ -15,7 +15,7 @@ Features: CRUD profile, project queries, top skills, search, health endpoint
 
 Goal: Seed with your real profile data and push the repo to GitHub + optionally host the frontend + backend.
 
-Demo / Hosted URLs
+# Demo / Hosted URLs
 
 Backend API: https://your-backend.example.com/api
 
@@ -31,7 +31,7 @@ Seed data visible in UI
 
 Query endpoints return expected filtered results
 
-Architecture
+# Architecture
 
 .
 ├── backend
@@ -85,7 +85,7 @@ Architecture
 
 └── package.json
 
-Tech Stack
+# Tech Stack
 
 Node.js (Express)
 
@@ -107,7 +107,7 @@ POST /api/profile — Create or update profile (body: profile object)
 GET /api/profile — Get the single stored profile
 
 
-Projects & Skills
+# Projects & Skills
 
 GET /api/projects — list all projects
 
@@ -122,7 +122,7 @@ Health
 
 GET /api/health — returns { "status": "ok" }
 
-Auth:
+## Auth:
 
 POST /api/auth/register
 
@@ -130,7 +130,7 @@ POST /api/auth/login
 
 POST /api/auth/logout
 
-Indexes / Notes
+## Indexes / Notes
 
 Create text index for search:
 db.profiles.createIndex({
@@ -165,7 +165,7 @@ node seed.js
 
 npm run dev
 
-# or
+ or
 
 node server.js
 
