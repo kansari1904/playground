@@ -97,7 +97,7 @@ Axios (frontend HTTP client)
 
 dotenv for env vars
 
-API Endpoints
+# API Endpoints
 
 Base: /api
 
